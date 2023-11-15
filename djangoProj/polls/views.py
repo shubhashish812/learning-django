@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from .models import Question
 
@@ -13,7 +13,12 @@ def index(request):
 
 
 def detail(request, q_id):
-    return HttpResponse("Question: %s." % q_id)
+    try:
+        question = Question.objects.get(pk=q_id)
+    except Question.DoesNotExist:
+        raise Http404("Question does not exist")
+
+    return render(request, "polls/detail.html", {"question": question})
 
 
 def results(request, q_id):
