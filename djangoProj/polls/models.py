@@ -12,7 +12,8 @@ class Question(models.Model):
         return self.ques
 
     def is_recent(self):
-        return self.dt >= timezone.now()-datetime.timedelta(days=1)
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.dt <= now
 
 
 class Choice(models.Model):
