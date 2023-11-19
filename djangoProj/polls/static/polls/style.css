@@ -11,5 +11,5 @@ body {
 }
 
 body:hover {
-  opacity: 1; /* Set the opacity on hover (you can adjust this value) */
+    opacity: 1; /* Set the opacity on hover (you can adjust this value) */
 }

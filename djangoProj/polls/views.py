@@ -33,13 +33,11 @@ def vote(request, q_id):
     try:
         sel_choice = question.choice_set.get(pk=request.POST["choice"])
     except (KeyError, Choice.DoesNotExist):
-
-        return render(request, "polls/detail.html",
-                      {
-                          "question": question,
-                          "error_message": "Didnt select choice"
-                      },
-                      )
+        return render(
+            request,
+            "polls/detail.html",
+            {"question": question, "error_message": "Didnt select choice"},
+        )
     else:
         sel_choice.votes += 1
         sel_choice.save()

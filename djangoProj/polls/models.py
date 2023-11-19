@@ -11,9 +11,7 @@ class Question(models.Model):
     def __str__(self):
         return self.ques
 
-    @admin.display(boolean=True,
-                   ordering=dt,
-                   description="Recent?")
+    @admin.display(boolean=True, ordering=dt, description="Recent?")
     def is_recent(self):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.dt <= now
